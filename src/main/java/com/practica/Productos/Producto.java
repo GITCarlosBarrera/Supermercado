@@ -1,5 +1,13 @@
 package com.practica.Productos;
 
+/**
+ * Clase abstracta que representa un producto genérico del supermercado.
+ * Define atributos y comportamientos comunes como la marca del producto y su precio.
+ * 
+ * Esta clase sirve como base para los diferentes productos de un supermercado.
+ * 
+ * @author Carlos Barrera Babiloni
+ */
 public abstract class Producto {
     private String marca;
     private float precio;

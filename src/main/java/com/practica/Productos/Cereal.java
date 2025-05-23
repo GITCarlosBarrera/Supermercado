@@ -6,11 +6,28 @@ import java.text.SimpleDateFormat;
 
 import com.practica.Interfaces.IAlimento;
 
+/**
+ * Clase que representa un cereal.
+ * Hereda atributos comunes de la clase Producto e implementa la interfaz IAlimento.
+ * 
+ * Incluye información específica como el tipo de cereal, la fecha de caducidad y el contenido calórico.
+ * 
+ * @author Carlos Barrera Babiloni
+ */
 public class Cereal extends Producto implements IAlimento {
     private String tipoCereal;
     private Date caducidad;
     private int calorias;    
 
+    /**
+     * Crea un nuevo objeto de tipo Cereal con la marca, precio y tipo de cereal.
+     * Asigna automáticamente las calorías en función del tipo de cereal y establece
+     * la fecha de caducidad a un mes desde la fecha actual.
+     *
+     * @param marca Marca del cereal.
+     * @param precio Precio del cereal.
+     * @param tipoCereal Tipo de cereal.
+     */
     public Cereal(String marca, float precio, String tipoCereal) {
         super(marca, precio);
         this.tipoCereal = tipoCereal;
@@ -61,6 +78,13 @@ public class Cereal extends Producto implements IAlimento {
         return calorias;
     }
 
+    
+    /**
+     * Devuelve una representación detallada del objeto Cereal,
+     * incluyendo marca, tipo, calorías, fecha de caducidad y precio.
+     *
+     * @return Cadena con la información completa del cereal.
+     */
     @Override
     public String toString() {
         String fechaCaducidad = "--/----";
@@ -79,6 +103,13 @@ public class Cereal extends Producto implements IAlimento {
                 + "\n\tPrecio: " + getPrecio() + "€";
     }
 
+    
+    /**
+     * Devuelve una representación simplificada del cereal,
+     * útil para listados breves o vistas resumidas.
+     *
+     * @return Cadena con información básica del cereal.
+     */
     @Override
     public String toSimpleString() {
         return "Cereal - Marca: " + getMarca() + " - Tipo de cereal: " + tipoCereal + "- Precio: " + getPrecio() + "€";

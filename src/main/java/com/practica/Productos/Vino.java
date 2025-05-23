@@ -8,6 +8,15 @@ import com.practica.Interfaces.IAlimento;
 import com.practica.Interfaces.IDescuento;
 import com.practica.Interfaces.ILiquido;
 
+/**
+ * Clase que representa un Vino.
+ * Hereda atributos comunes de la clase Producto e implementa la interfaz ILiquido, IAlimento e IDescuento.
+ * 
+ * Incluye información específica como el tipo de vino, los grados de alcohol, el volumen, el tipo de envase
+ * la fecha de caducidad, el contenido calórico y el descuento.
+ * 
+ * @author Carlos Barrera Babiloni
+ */
 public class Vino extends Producto implements ILiquido, IAlimento, IDescuento {
     private String tipoVino;
     private float gradosAlcohol;
@@ -17,6 +26,15 @@ public class Vino extends Producto implements ILiquido, IAlimento, IDescuento {
     private int calorias;
     private float descuento; // Porcentaje de descuento
 
+    /**
+     * Crea un objeto Vino con la información mínima requerida: marca, precio, tipo de vino y grados de alcohol.
+     * Asigna automáticamente las calorías en función de los grados de alcohol.
+     * 
+     * @param marca
+     * @param precio
+     * @param tipoVino
+     * @param gradosAlcohol
+     */
     public Vino(String marca, float precio, String tipoVino, float gradosAlcohol) {
         super(marca, precio);
         this.tipoVino = tipoVino;
@@ -24,6 +42,18 @@ public class Vino extends Producto implements ILiquido, IAlimento, IDescuento {
         calorias = (int) gradosAlcohol * 10;
     }
 
+    /**
+     * Crea un objeto Vino con todos los atributos especificados.     * 
+     * Asigna automáticamente las calorías en función de los grados de alcohol
+     * y establece la fecha de caducidad a un mes desde la fecha actual.
+     * @param marca
+     * @param precio
+     * @param tipoVino
+     * @param gradosAlcohol
+     * @param volumen
+     * @param tipoEnvase
+     * @param descuento
+     */
     public Vino(String marca, float precio, String tipoVino, float gradosAlcohol, float volumen, String tipoEnvase, float descuento) {
         super(marca, precio);
         this.tipoVino = tipoVino;
@@ -31,6 +61,7 @@ public class Vino extends Producto implements ILiquido, IAlimento, IDescuento {
         this.volumen = volumen;
         this.tipoEnvase = tipoEnvase;
         this.descuento = descuento;
+        calorias = (int) gradosAlcohol * 10;
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, 1);
@@ -103,6 +134,13 @@ public class Vino extends Producto implements ILiquido, IAlimento, IDescuento {
         return getPrecio() * (1 - descuento / 100);
     }
 
+    /**
+     * Devuelve una representación detallada del objeto Vino,
+     * incluyendo marca, tipo de vino, grados de alcohol, volumen, tipo de envase, calorias,
+     * fecha de caducidad, precio, descuento y precio con descuento.
+     *
+     * @return Cadena con la información completa del vino.
+     */
     @Override
     public String toString() {
         String fechaCaducidad = "--/----";
@@ -127,6 +165,12 @@ public class Vino extends Producto implements ILiquido, IAlimento, IDescuento {
                     + getPrecioDescuento() + "€" : "");
     }
 
+    /**
+     * Devuelve una representación simplificada del Vino,
+     * útil para listados breves o vistas resumidas.
+     *
+     * @return Cadena con información básica del vino.
+     */
     @Override
     public String toSimpleString() {
         return "Vino - Marca: " + getMarca() + " - Tipo de vino: " + tipoVino + "- Precio: " + getPrecio() + "€";

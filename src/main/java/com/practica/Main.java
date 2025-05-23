@@ -9,14 +9,27 @@ import com.practica.Productos.Detergente;
 import com.practica.Productos.Producto;
 import com.practica.Productos.Vino;
 
+/**
+ * Clase principal del programa de gestión de supermercado.
+ *
+ * @author Carlos Barrera Babilon
+ * @version 1.1
+ */
 public class Main {
+    
+    /**
+     * Método principal que inicia la ejecución del programa.
+     * Crea una lista de productos, permite al usuario añadir, mostrar o eliminar productos
+     * y seleccionar entre acceso de empleado, cliente o salir, mediante un menú por consola.
+     *
+     * @param args Argumentos de línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int index = -1;
         List<Producto> productos = new ArrayList<>();
 
-        // Caso de ejemplo
-        generarProductosEjemplo(productos);
+        generarProductosEjemplo(productos); // Caso de prueba
 
         while (index != 3) {
             System.out.println("Seleccione el acceso al supermercado:");
@@ -57,7 +70,11 @@ public class Main {
         scanner.close();
     }
 
-    // Métodos de empleado
+    /**
+     * Genera varios productos de ejemplo para realizar el caso de prueba.
+     * 
+     * @param productos Lista de productos disponibles en el supermercado.
+     */
     public static void generarProductosEjemplo(List<Producto> productos) {
         // Detergentes
         Detergente d1 = new Detergente("Ariel", 3.99f);
@@ -93,6 +110,14 @@ public class Main {
         productos.add(c4);
     }
 
+    // Métodos de empleado
+
+    /**
+    * Muestra el menú de opciones para el empleado.
+    *
+    * @param scanner Scanner para leer la entrada del usuario.
+    * @param productos Lista de productos disponibles en el supermercado.
+    */
     public static void menuEmpleado(Scanner scanner, List<Producto> productos) {
         int index = -1;
 
@@ -141,6 +166,13 @@ public class Main {
         }
     }
 
+
+    /**
+    * Muestra el menú de seleccion de tipo de producto y añade el producto.
+    *
+    * @param scanner Scanner para leer la entrada del usuario.
+    * @param productos Lista de productos disponibles en el supermercado.
+    */
     public static void seleccionAnyadirProducto(Scanner scanner, List<Producto> productos) {
         int index = -1;
 
@@ -183,6 +215,13 @@ public class Main {
         }
     }
 
+
+    /**
+     * Solicita al usuario la información necesaria para crear un objeto de tipo Detergente.
+     *
+     * @param scanner Scanner utilizado para leer la entrada del usuario.
+     * @return Un nuevo objeto de tipo Detergente.
+     */
     public static Detergente anyadirDetergente(Scanner scanner) {
         String marca = "", tipoEnvase = "";
         float  precio = 0, volumen = 0, descuento = 0;
@@ -222,6 +261,12 @@ public class Main {
         }
     }
 
+    /**
+     * Solicita al usuario la información necesaria para crear un objeto de tipo Vino.
+     *
+     * @param scanner Scanner utilizado para leer la entrada del usuario.
+     * @return Un nuevo objeto de tipo Vino.
+     */
     public static Vino anyadirVino(Scanner scanner) {
         String marca = "", tipoEnvase = "";
         float  precio = 0, volumen = 0, descuento = 0, gradosAlcohol = 0;
@@ -266,6 +311,13 @@ public class Main {
         }
     }
 
+
+    /**
+     * Solicita al usuario la información necesaria para crear un objeto de tipo Cereal.
+     *
+     * @param scanner Scanner utilizado para leer la entrada del usuario.
+     * @return Un nuevo objeto de tipo Cereal.
+     */
     public static Cereal anyadirCereal(Scanner scanner) {
         String marca = "", tipoCereal = "";
         float  precio = 0;
@@ -294,6 +346,14 @@ public class Main {
         return new Cereal(marca, precio, tipoCereal);
     }
 
+
+    /**
+     * Muestra los productos disponibles en la lista con un número identificador
+     * y permite al usuario seleccionar uno para eliminarlo.
+     *
+     * @param scanner Scanner utilizado para leer la entrada del usuario.
+     * @param productos Lista de productos disponibles en el supermercado.
+     */
     public static void borrarProducto(Scanner scanner, List<Producto> productos) {
         int index = -1, cont = 1;
 
@@ -328,6 +388,13 @@ public class Main {
     }
 
     // Métodos de cliente
+
+    /**
+     * Muestra el menú de opciones para el cliente.
+     *
+     * @param scanner Scanner para leer la entrada del usuario.
+     * @param productos Lista de productos disponibles en el supermercado.
+     */
     public static void menuCliente(Scanner scanner, List<Producto> productos) {
         List<Producto> listaCompras = new ArrayList<>();
         int index = -1;
@@ -369,6 +436,14 @@ public class Main {
         }
     }    
 
+    /**
+    * Muestra los productos disponibles en la lista con un número identificador
+    * y permite al usuario seleccionar uno para añadirlo a la lista de la compra.
+    *
+    * @param scanner Scanner para leer la entrada del usuario.
+    * @param productos Lista de productos disponibles en el supermercado.
+    * @param listaCompras Lista de compra del usuario que contiene los productos comprados.
+    */
     public static void comprarProductos(Scanner scanner, List<Producto> productos, List<Producto> listaCompras) {
         int index = -1, cont = 1;
 
@@ -402,6 +477,13 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra los productos añadidos a la lista de la compra junto con el precio total
+     * aplicando los descuentos y la suma total de calorias que contienen los alimentos.
+     * 
+     * @param scanner Scanner para leer la entrada del usuario.
+     * @param listaCompras Lista de compra del usuario que contiene los productos comprados.
+     */
     public static void verListaCompras(Scanner scanner, List<Producto> listaCompras) {
         int cont = 1;
 
@@ -419,6 +501,12 @@ public class Main {
         System.out.println("Total: " + calcularTotal(listaCompras) + "€");
     }
 
+    /**
+     * Recorre todos los productos de la lista y suma la cantidad de calorias de aquellos que son alimentos.
+     * 
+     * @param listaCompras Lista de compra del usuario que contiene los productos comprados.
+     * @return Total de calorias entre todos los alimentos.
+     */
     public static int calcularCalorias(List<Producto> listaCompras) {
         int caloriasTotales = 0;
 
@@ -437,6 +525,13 @@ public class Main {
         return caloriasTotales;
     }
 
+    /**
+     * Recorre todos los productos de la lista y suma el precio de cada uno con el descuento
+     * incluido en caso de tenerlo.
+     * 
+     * @param listaCompras Lista de compra del usuario que contiene los productos comprados.
+     * @return Total del precio de todos los productos.
+     */
     public static float calcularTotal(List<Producto> listaCompras) {
         float total = 0;
 
